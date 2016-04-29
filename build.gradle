@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+}
+    dependencies {
+        classpath "com.khomich:gradle-ebean-enhancer:2.0-EXPERIMENTAL"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'com.khomich.ebean.enhancer'
+
+group 'ru.fistech'
+version = '0.1'
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+
+ext {
+    testng = "6.9.10"
+    lombok = "1.16.8"
+    postgre = "9.4.1208"
+    ebean = "7.8.1"
+    slf4 = "1.7.21"
+    logback = "1.1.7"
+}
+
+configurations {
+    provided
+    compile.extendsFrom(provided)
+}
+
+idea { module { scopes.PROVIDED.plus += [ configurations.provided ] } }
+
+configurations.all {
+    exclude group: "commons-logging", module: "commons-logging"
+}
+
+test {
+    useTestNG()
+}
+
+dependencies {
+    compile "org.slf4j:slf4j-api:$slf4"
+    compile "ch.qos.logback:logback-classic:$logback"
+    compile "org.postgresql:postgresql:$postgre"
+    compile "org.avaje.ebeanorm:avaje-ebeanorm:$ebean"
+    testCompile "org.testng:testng:$testng"
+    provided "org.projectlombok:lombok:$lombok"
+}
