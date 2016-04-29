@@ -1,12 +1,12 @@
-buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-}
-    dependencies {
-        classpath "com.khomich:gradle-ebean-enhancer:2.0-EXPERIMENTAL"
-    }
-}
+//buildscript {
+//    repositories {
+//        mavenLocal()
+//        jcenter()
+//}
+//    dependencies {
+//        classpath "com.khomich:gradle-ebean-enhancer:2.0-EXPERIMENTAL"
+//    }
+//}
 
 repositories {
     mavenLocal()
@@ -15,7 +15,7 @@ repositories {
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'com.khomich.ebean.enhancer'
+//apply plugin: 'com.khomich.ebean.enhancer'
 
 group 'ru.fistech'
 version = '0.1'
